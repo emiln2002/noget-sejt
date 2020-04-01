@@ -1,6 +1,5 @@
 import pygame, random, sys, time
 from pygame.locals import *
-
 pygame.init()
 
 #color initialization
@@ -57,6 +56,8 @@ regColors = ["RED","BLUE","GREEN","YELLOW"]
 buttons = [button_red, button_blue, button_green, button_yellow]
 
 pygame.display.update()
+highScore=0
+
 
 while not GAMEOVER:
 
@@ -84,6 +85,7 @@ while not GAMEOVER:
     #the click detection loop
     clicks = 0
     clickPositions = []
+    score = 0
     while clicks < count:
 
         for event in pygame.event.get():
@@ -92,10 +94,19 @@ while not GAMEOVER:
                 print("Clicks = ", clicks)
                 clickPositions.append(pygame.mouse.get_pos())
                 print(clickPositions)
+                score = score + 1
 
     for index,shape in enumerate(rectSequence):
         if not shape.collidepoint(clickPositions[index]):
             print("BAD CLICK")
             GAMEOVER = True
+            print("score:", score)
+            try:
+                with open('HighScore.txt') as file:
+                    data = file.read()
+                    HighScore = int(data.strip())
+                    print("Loaded highscore:", HighScore)
+            except:
+                print("highScoreFile not found, resetting to 0.")
         else:
             print("GOOD CLICK")
