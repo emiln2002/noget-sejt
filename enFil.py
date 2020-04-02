@@ -108,5 +108,13 @@ while not GAMEOVER:
                     print("Loaded highscore:", HighScore)
             except:
                 print("highScoreFile not found, resetting to 0.")
+            if score > HighScore:
+                 try:
+
+                    with open('HighScore.txt') as file:
+                        file.write(score)
+                        file.close()
+                 except:
+                    print("you are shit")
         else:
             print("GOOD CLICK")
