@@ -56,11 +56,13 @@ regColors = ["RED","BLUE","GREEN","YELLOW"]
 buttons = [button_red, button_blue, button_green, button_yellow]
 
 pygame.display.update()
-highScore=0
+HighScore=0
 
 
 while not GAMEOVER:
 
+    pygame.mixer.music.load('wii.mp3')
+    pygame.mixer.music.play(-1)
     r = random.randint(0,3)
     randoms.append(r)
     sequence.append(colors[r])
@@ -94,7 +96,7 @@ while not GAMEOVER:
                 print("Clicks = ", clicks)
                 clickPositions.append(pygame.mouse.get_pos())
                 print(clickPositions)
-                score = score + 1
+                score = score + 10
 
     for index,shape in enumerate(rectSequence):
         if not shape.collidepoint(clickPositions[index]):
@@ -111,10 +113,11 @@ while not GAMEOVER:
             if score > HighScore:
                  try:
 
-                    with open('HighScore.txt') as file:
-                        file.write(score)
+                    with open('HighScore.txt','w') as file:
+                        file.write(str(score))
                         file.close()
                  except:
                     print("you are shit")
+                 print("new highscore",score,"!")
         else:
             print("GOOD CLICK")
