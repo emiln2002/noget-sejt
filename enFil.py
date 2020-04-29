@@ -58,11 +58,12 @@ buttons = [button_red, button_blue, button_green, button_yellow]
 pygame.display.update()
 HighScore=0
 
+pygame.mixer.music.load('music/wii.mp3')
+pygame.mixer.music.play(-1)
 
 while not GAMEOVER:
 
-    pygame.mixer.music.load('wii.mp3')
-    pygame.mixer.music.play(-1)
+
     r = random.randint(0,3)
     randoms.append(r)
     sequence.append(colors[r])
