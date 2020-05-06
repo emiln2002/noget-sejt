@@ -60,7 +60,7 @@ HighScore=0
 
 pygame.mixer.music.load('music/wii.mp3')
 pygame.mixer.music.play(-1)
-
+score = 0
 while not GAMEOVER:
 
 
@@ -88,7 +88,6 @@ while not GAMEOVER:
     #the click detection loop
     clicks = 0
     clickPositions = []
-    score = 0
     while clicks < count:
 
         for event in pygame.event.get():
@@ -100,7 +99,7 @@ while not GAMEOVER:
                 score = score + 10
 
     for index,shape in enumerate(rectSequence):
-        if not shape.collidepoint(clickPositions[index]):
+         if not shape.collidepoint(clickPositions[index]):
             print("BAD CLICK")
             GAMEOVER = True
             print("score:", score)
@@ -120,5 +119,15 @@ while not GAMEOVER:
                  except:
                     print("you are shit")
                  print("new highscore",score,"!")
-        else:
+         else:
             print("GOOD CLICK")
+font = pygame.font.SysFont("comicsansms", 40)
+
+text = font.render("your score is" + score, False, (0, 128, 0))
+
+while GAMEOVER:
+    screen.fill((255, 255, 255))
+    screen.blit(text,
+                (120 - text.get_width() // 2, 100 - text.get_height() // 2))
+
+    pygame.display.flip()
