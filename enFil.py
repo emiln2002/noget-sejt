@@ -123,7 +123,7 @@ while not GAMEOVER:
             print("GOOD CLICK")
 font = pygame.font.SysFont("comicsansms", 40)
 
-text = font.render("your score is" + score, False, (0, 128, 0))
+text = font.render("your score is: " + str(score), False, (0, 128, 0))
 
 while GAMEOVER:
     screen.fill((255, 255, 255))
